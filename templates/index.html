@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>California House Price Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>California House Price Prediction</h1>
+
+    <p>Enter the house details</p>
+
+    <form action="/" method="POST">
+
+        <input
+            type="number"
+            step="any"
+            name="med_inc"
+            placeholder="Median Income"
+            required
+        >
+
+        <input
+            type="number"
+            step="any"
+            name="house_age"
+            placeholder="House Age"
+            required
+        >
+
+        <input
+            type="number"
+            step="any"
+            name="ave_rooms"
+            placeholder="Average Rooms"
+            required
+        >
+
+        <input
+            type="number"
+            step="any"
+            name="ave_bedrms"
+            placeholder="Average Bedrooms"
+            required
+        >
+
+        <input
+            type="number"
+            step="any"
+            name="population"
+            placeholder="Population"
+            required
+        >
+
+        <input
+            type="number"
+            step="any"
+            name="ave_occup"
+            placeholder="Average Occupancy"
+            required
+        >
+
+        <input
+            type="number"
+            step="any"
+            name="latitude"
+            placeholder="Latitude"
+            required
+        >
+
+        <input
+            type="number"
+            step="any"
+            name="longitude"
+            placeholder="Longitude"
+            required
+        >
+
+        <button type="submit">
+            Predict House Price
+        </button>
+
+    </form>
+
+    {% if prediction is not none %}
+
+        <div class="result">
+
+            <h2>Predicted Price</h2>
+
+            <p>{{ prediction }}</p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

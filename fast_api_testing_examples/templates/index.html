@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>California House Price Prediction</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        .success-box { background: #e8f5e9; padding: 15px; border-radius: 6px; margin-top: 20px; }
+        table { border-collapse: collapse; margin-top: 10px; width: 350px; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #f0f0f0; }
+    </style>
+</head>
+<body>
+
+    <h2>California House Price Prediction</h2>
+
+    <form action="/predict_file" method="post" enctype="multipart/form-data">
+        <label><b>Select CSV File:</b></label><br><br>
+        <input type="file" name="file" accept=".csv" required>
+        <br><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    <!-- This section renders ONLY after the form is submitted -->
+    {% if predictions %}
+        <div class="success-box">
+            <h3>Results for: <i>{{ filename }}</i></h3>
+            <p>Total predictions generated: <b>{{ predictions|length }}</b></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Row #</th>
+                        <th>Predicted Price ($100k)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pred in predictions %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>${{ "%.2f"|format(pred * 100000) }} ({{ pred }})</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+</body>
+</html>
